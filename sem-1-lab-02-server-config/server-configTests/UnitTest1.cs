@@ -1,30 +1,63 @@
-﻿using MainProject;
-
-namespace ProgramTests;
-
-public class Tests
+﻿using NUnit.Framework;
+using MainProject;
+public class ProgramTests
 {
     [Test]
-    public void Add_TwoNumbers_ReturnsSum()
+    public void CheckConfiguration_ValidConfiguration_ServerIsReady()
     {
-        var result = Program.Add(2, 3);
+        var result = Program.CheckConfiguration(50, 8, true, false);
 
-        Assert.That(result, Is.EqualTo(5));
+        Assert.That(result, Is.EqualTo("Сервер готов к запуску."));
     }
 
     [Test]
-    public void IsEven_EvenNumber_ReturnsTrue()
+    public void CheckConfiguration_ZeroPlayers_LaunchIsImpossible()
     {
-        var result = Program.IsEven(10);
+        var result = Program.CheckConfiguration(0, 8, true, false);
 
-        Assert.That(result, Is.True);
+        Assert.That(
+            result,
+            Is.EqualTo("Запуск невозможен: количество игроков должно быть больше нуля."));
     }
 
     [Test]
-    public void IsEven_OddNumber_ReturnsFalse()
+    public void CheckConfiguration_NotEnoughMemory_LaunchIsImpossible()
     {
-        var result = Program.IsEven(11);
+        var result = Program.CheckConfiguration(50, 1, true, false);
 
-        Assert.That(result, Is.False);
+        Assert.That(
+            result,
+            Is.EqualTo("Запуск невозможен: серверу недостаточно оперативной памяти."));
+    }
+
+    [Test]
+    public void CheckConfiguration_PublicServerWithPassword_LaunchWithWarning()
+    {
+        var result = Program.CheckConfiguration(50, 8, true, true);
+
+        Assert.That(
+            result,
+            Is.EqualTo("Запуск возможен с предупреждением: публичный сервер защищён паролем."));
+    }
+
+    [Test]
+    public void CheckConfiguration_TooManyPlayersForAvailableMemory_LaunchWithWarning()
+    {
+        var result = Program.CheckConfiguration(150, 4, true, false);
+
+        Assert.That(
+            result,
+            Is.EqualTo(
+                "Запуск возможен с предупреждением: для такого количества игроков рекомендуется больше оперативной памяти."));
+    }
+
+    [Test]
+    public void CheckConfiguration_InvalidPlayersAndPublicServerWithPassword_LaunchIsImpossible()
+    {
+        var result = Program.CheckConfiguration(0, 8, true, true);
+
+        Assert.That(
+            result,
+            Is.EqualTo("Запуск невозможен: количество игроков должно быть больше нуля."));
     }
 }
