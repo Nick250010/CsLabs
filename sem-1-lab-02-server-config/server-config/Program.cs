@@ -6,12 +6,18 @@ public class Program
     {
         string result = "";
         float ramForPeople = 6.25f;
-        bool ANram = ((people/ram) > ramForPeople) ? false : true;
+        
         bool ppl = people >0 ? true : false;
         bool ps = password ? false : true;
         List<string> errorCritical = [];
         List<string> errorNonCritical = [];
-        if(!ANram){errorNonCritical.Add("для такого количества игроков рекомендуется больше оперативной памяти.");}
+        if((people/ram) >= 50)
+        {
+            errorCritical.Add("серверу недостаточно оперативной памяти.");
+        }else if((people/ram) > ramForPeople)
+        {
+            errorNonCritical.Add("Запуск возможен с предупреждением: для такого количества игроков рекомендуется больше оперативной памяти.");
+        }
         if(!ppl){errorCritical.Add("количество игроков должно быть больше нуля.");}
         if(!ps){errorNonCritical.Add("публичный сервер защищён паролем.");}
         if(errorCritical.Count != 0)
@@ -21,15 +27,17 @@ public class Program
             {
                 result+= $"{errorCritical[i]}";
             }
-            return result;
         }else if (errorNonCritical.Count != 0)
         {
-            result+="Запуск возможен, но есть следующие замечания: ";
+            result+="Запуск возможен с предупреждением: ";
             for(int i = 0; i < errorNonCritical.Count; i++)
             {
                 result+= $"{errorNonCritical[i]}";
             }
-            return result;
+        }
+        else
+        {
+            result+="Сервер готов к запуску.";
         }
         return result;
     }
