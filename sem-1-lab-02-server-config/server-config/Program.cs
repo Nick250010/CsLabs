@@ -16,7 +16,7 @@ public class Program
             errorCritical.Add("серверу недостаточно оперативной памяти.");
         }else if((people/ram) > ramForPeople)
         {
-            errorNonCritical.Add("Запуск возможен с предупреждением: для такого количества игроков рекомендуется больше оперативной памяти.");
+            errorNonCritical.Add("для такого количества игроков рекомендуется больше оперативной памяти.");
         }
         if(!ppl){errorCritical.Add("количество игроков должно быть больше нуля.");}
         if(!ps){errorNonCritical.Add("публичный сервер защищён паролем.");}
