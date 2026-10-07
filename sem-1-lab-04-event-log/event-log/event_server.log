@@ -1,0 +1,100 @@
+2026-09-01 12:16:01.101 [Info][User] User logged in: RavenFox
+2026-09-01 12:16:07.893 [Info][Server] Event "Frostfire Rebellion" scheduled to start in 2 hours
+2026-09-01 12:18:25.105 [Info][Event] Event started
+2026-09-01 12:18:25.105 [Info][Event] Main objective revealed: capture the Ancient Beacon
+2026-09-01 12:18:26.221 [Info][Clan] Clan Night Owls entered the event zone
+2026-09-01 12:18:29.774 [Info][User] User joined party: RavenFox -> Night Owls
+2026-09-01 12:18:34.204 [Info][Event] User found item: Ember Compass
+2026-09-01 12:18:42.552 [Info][NPC] Guardian of the Beacon spawned at North Ridge
+2026-09-01 12:18:47.330 [Info][Combat] RavenFox attacked Guardian of the Beacon for 184 damage
+2026-09-01 12:18:49.008 [Info][Combat] MiraStone cast Ice Wall near North Ridge
+2026-09-01 12:18:52.616 [Info][Combat] Iron Wolves defeated three Frostling scouts
+2026-09-01 12:18:55.481 [Info][Event] First signal flare activated by Night Owls
+2026-09-01 12:18:58.140 [Warning][Server] North Ridge latency increased to 184 ms
+2026-09-01 12:19:01.725 [Info][Loot] Night Owls received loot: 4x Ember Shard
+2026-09-01 12:19:05.302 [Info][Event] User found item: Broken Crown Fragment
+2026-09-01 12:19:09.944 [Info][Clan] Iron Wolves captured the Old Watchtower
+2026-09-01 12:19:17.283 [Info][Combat] Guardian of the Beacon entered enraged state
+2026-09-01 12:19:20.811 [Info][Combat] Guardian of the Beacon used ability: Shattered Ground
+2026-09-01 12:19:24.078 [Info][User] User RavenFox was knocked down by Shattered Ground
+2026-09-01 12:19:26.650 [Info][User] User RavenFox revived by MiraStone
+2026-09-01 12:19:30.118 [Info][Event] Secret tunnel discovered beneath the Old Watchtower
+2026-09-01 12:19:34.906 [Info][Clan] Night Owls entered the secret tunnel
+2026-09-01 12:19:38.442 [Info][Trap] Pressure plate triggered by RavenFox
+2026-09-01 12:19:38.442 [Warning][Trap] Secret tunnel trap dealt 62 damage to RavenFox
+2026-09-01 12:19:46.731 [Info][Event] Hidden objective revealed: light three frozen braziers
+2026-09-01 12:19:51.518 [Info][Event] Frozen brazier 1/3 lit by Night Owls
+2026-09-01 12:19:56.274 [Info][Event] Frozen brazier 2/3 lit by Night Owls
+2026-09-01 12:20:09.605 [Info][Combat] Iron Wolves ambushed Night Owls at the tunnel entrance
+2026-09-01 12:20:12.812 [Info][Combat] MiraStone stunned RavenFox for 3 seconds
+2026-09-01 12:20:16.470 [Info][Combat] RavenFox escaped through the east passage
+2026-09-01 12:20:20.215 [Info][Clan] Iron Wolves stole item: Broken Crown Fragment
+2026-09-01 12:20:24.927 [Error][Event] Objective state desync detected for frozen brazier 2/3
+2026-09-01 12:20:27.114 [Info][Server] Objective state synchronized from authoritative node
+2026-09-01 12:20:31.778 [Info][Event] Frozen brazier 3/3 lit by Night Owls
+2026-09-01 12:20:35.443 [Info][Event] Hidden objective completed: Night Owls earned 500 points
+2026-09-01 12:20:39.901 [Info][NPC] Elite Frost Warden spawned at Glacier Gate
+2026-09-01 12:20:44.286 [Info][Combat] StoneMoth challenged Elite Frost Warden
+2026-09-01 12:20:49.510 [Info][Combat] Elite Frost Warden used ability: Whiteout
+2026-09-01 12:20:52.889 [Warning][Server] Visibility updates delayed for 2.4 seconds
+2026-09-01 12:20:56.312 [Info][User] User RavenFox picked up item: Signal Lantern
+2026-09-01 12:21:00.704 [Info][Event] Signal Lantern revealed a hidden route to the Frozen Arena
+2026-09-01 12:21:04.460 [Info][Clan] Night Owls claimed the Frozen Arena
+2026-09-01 12:21:08.173 [Info][Combat] RavenFox defeated Frostling Captain
+2026-09-01 12:21:17.029 [Info][Event] Ancient Beacon became vulnerable
+2026-09-01 12:21:21.807 [Info][Clan] Night Owls began capturing the Ancient Beacon
+2026-09-01 12:21:26.315 [Info][Clan] Iron Wolves contested the Ancient Beacon
+2026-09-01 12:21:30.948 [Info][Combat] StoneMoth destroyed a beacon shield for 310 damage
+2026-09-01 12:21:35.506 [Info][Combat] MiraStone placed healing field at the beacon
+2026-09-01 12:21:39.882 [Info][User] User RavenFox used item: Silver Wolf Token
+2026-09-01 12:21:44.221 [Info][Event] Silver Wolf Token summoned a spectral wolf companion
+2026-09-01 12:21:49.670 [Info][Combat] Spectral wolf interrupted beacon capture
+2026-09-01 12:21:54.103 [Info][Combat] Night Owls defeated 6 Iron Wolves defenders
+2026-09-01 12:21:58.799 [Info][Clan] Night Owls regained control of the Ancient Beacon
+2026-09-01 12:22:03.117 [Info][Event] Ancient Beacon capture progress: 25%
+2026-09-01 12:22:07.956 [Info][Server] Dynamic weather changed: heavy snow
+2026-09-01 12:22:12.344 [Warning][Combat] Accuracy reduced by 15% due to heavy snow
+2026-09-01 12:22:16.602 [Info][User] User MiraStone found item: Warmth Rune
+2026-09-01 12:22:25.409 [Info][Clan] Iron Wolves activated emergency respawn point
+2026-09-01 12:22:29.735 [Info][Combat] Iron Wolves launched counterattack from Glacier Gate
+2026-09-01 12:22:34.118 [Info][Combat] RavenFox blocked an attack from StoneMoth
+2026-09-01 12:22:38.901 [Info][Combat] StoneMoth was frozen by RavenFox's Frostbite trap
+2026-09-01 12:22:43.277 [Info][Event] Ancient Beacon capture progress: 50%
+2026-09-01 12:22:47.690 [Info][NPC] World boss Emberfang appeared near the battlefield
+2026-09-01 12:22:52.066 [Info][Server] Global announcement sent: Emberfang has awakened
+2026-09-01 12:22:56.543 [Info][Clan] Both clans temporarily stopped fighting the beacon
+2026-09-01 12:23:01.824 [Info][Combat] Night Owls and Iron Wolves attacked Emberfang
+2026-09-01 12:23:06.198 [Info][Combat] Emberfang used ability: Molten Roar
+2026-09-01 12:23:10.775 [Warning][User] User MiraStone health dropped below 10%
+2026-09-01 12:23:15.239 [Info][User] User MiraStone consumed item: Minor Health Potion
+2026-09-01 12:23:19.644 [Info][Combat] Emberfang armor reduced by 30%
+2026-09-01 12:23:24.087 [Info][Combat] StoneMoth dealt critical hit to Emberfang for 842 damage
+2026-09-01 12:23:28.511 [Info][Combat] Emberfang defeated
+2026-09-01 12:23:32.900 [Info][Loot] Shared loot dropped: Emberfang Heart
+2026-09-01 12:23:37.326 [Info][User] User RavenFox claimed item: Emberfang Heart
+2026-09-01 12:23:41.718 [Info][Event] Ancient Beacon capture progress: 75%
+2026-09-01 12:23:46.205 [Info][Clan] Iron Wolves launched final assault on the Ancient Beacon
+2026-09-01 12:23:50.933 [Info][Combat] MiraStone disabled two Night Owls traps
+2026-09-01 12:23:55.410 [Info][Combat] RavenFox activated Emberfang Heart
+2026-09-01 12:23:59.822 [Info][Event] Emberfang Heart created a protective fire ring
+2026-09-01 12:24:04.301 [Info][Clan] Night Owls defended the Ancient Beacon for 30 seconds
+2026-09-01 12:24:08.677 [Info][Event] Ancient Beacon capture progress: 100%
+2026-09-01 12:24:09.002 [Info][Event] Night Owls took control of the Ancient Beacon
+2026-09-01 12:24:13.446 [Info][Reward] Night Owls received 2500 event points
+2026-09-01 12:24:17.813 [Info][Reward] RavenFox received title: Beacon Keeper
+2026-09-01 12:24:22.190 [Info][Clan] Iron Wolves received consolation reward: 800 event points
+2026-09-01 12:24:26.507 [Info][Event] Final objective revealed: hold the beacon until extraction
+2026-09-01 12:24:31.966 [Info][Server] Extraction timer started: 5 minutes
+2026-09-01 12:24:36.220 [Info][User] User StoneMoth disconnected unexpectedly
+2026-09-01 12:24:40.744 [Warning][Server] Reconnecting user StoneMoth, attempt 1/3
+2026-09-01 12:24:45.115 [Info][User] User StoneMoth reconnected
+2026-09-01 12:24:49.603 [Info][Combat] Iron Wolves captured a secondary supply cache
+2026-09-01 12:24:58.417 [Info][Event] Extraction beacon charged to 50%
+2026-09-01 12:25:03.901 [Info][Combat] Night Owls repelled the final Iron Wolves attack
+2026-09-01 12:25:08.264 [Info][Event] Extraction beacon charged to 100%
+2026-09-01 12:25:09.006 [Info][Event] Event completed successfully
+2026-09-01 12:25:10.113 [Info][Reward] Night Owls declared winners of "Frostfire Rebellion"
+2026-09-01 12:25:14.771 [Info][Reward] All participants received participation rewards
+2026-09-01 12:25:20.448 [Info][Server] Event zone cleared, remaining NPCs despawned
+2026-09-01 12:25:25.002 [Info][Server] Event statistics saved: 18 players, 2 clans, 1 world boss
+2026-09-01 12:25:30.619 [Info][Server] Event "Frostfire Rebellion" closed
