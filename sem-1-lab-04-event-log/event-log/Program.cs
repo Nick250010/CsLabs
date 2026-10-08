@@ -7,9 +7,9 @@ public class Program
     public struct LogEntry()
     {
     public DateTime Timestamp;
-    public string Level;
-    public string Category;
-    public string Message;
+    public string Level = "";
+    public string Category = "";
+    public string Message = "";
     }
 
     public static List<LogEntry> ParseLog(string[] lines){
