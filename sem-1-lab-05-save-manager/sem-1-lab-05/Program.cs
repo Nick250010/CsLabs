@@ -3,12 +3,12 @@ using System;
 using System.ComponentModel;
 using Newtonsoft.Json;
 
-class Program
-{
+
+namespace Mainproject;
 
 
 
-    public class Position
+public class Position
     {
         public int x;
         public int y;
@@ -30,6 +30,9 @@ class Program
         public DateTime updateAt {get; set;}
     }
 
+public class Program
+{
+    
     public static List<SaveEntry> LoadIndex(string indexPath)
     {
         if (File.Exists(indexPath))
@@ -108,6 +111,39 @@ class Program
     Directory.CreateDirectory(backupsDirectory);
     File.Copy(source, destination, true);
     Console.WriteLine("Резервная копия создана!");
+}
+
+
+
+public static void RestoreBackup(string savesDirectory,string backupsDirectory,SaveEntry entry)
+{
+    string backupPath = Path.Combine(backupsDirectory, entry.file);
+    string savePath = Path.Combine(savesDirectory, entry.file);
+    if (!File.Exists(backupPath))
+    {
+        Console.WriteLine($"Резервная копия не найдена: {backupPath}");
+        return;
+    }
+    Directory.CreateDirectory(savesDirectory);
+    File.Copy(backupPath, savePath, overwrite: true);
+    Console.WriteLine($"Сохранение восстановлено: {entry.name}");
+}
+
+public static void DeleteSave(string savesDirectory,string indexPath,List<SaveEntry> entries,SaveEntry entry)
+{
+    string savePath = Path.Combine(savesDirectory, entry.file);
+    if (File.Exists(savePath))
+    {
+        File.Delete(savePath);
+        Console.WriteLine($"Файл сохранения удалён: {entry.name}");
+    }
+    else
+    {
+        Console.WriteLine($"Файл сохранения не найден: {savePath}");
+    }
+    entries.Remove(entry);
+    SaveIndex(indexPath, entries);
+    Console.WriteLine($"Индекс сохранений обновлён.");
 }
     static void Main(){
         //SaveData save = JsonConvert.DeserializeObject<SaveData>(json);

@@ -19,6 +19,7 @@
 
   <ItemGroup>
     <Using Include="NUnit.Framework" />
+    <ProjectReference Include="..\sem-1-lab-05\sem-1-lab-05.csproj" />
   </ItemGroup>
 
 </Project>
