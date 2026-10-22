@@ -10,7 +10,7 @@ internal class Program
     public static void clean(int strok)
     {
         Console.SetCursorPosition(0, strok);
-        Console.Write(new string(' ', 34));
+        Console.Write(new string(' ', Console.WindowWidth - 1));
         Console.SetCursorPosition(0, strok);
     }
 
@@ -34,7 +34,7 @@ internal class Program
 
     public static void Table(double Nowcpu, double Nowram, double Nowtemperature)
     {
-        clean(4);
+        clean(3);
 
         Console.Write("Cpu: ");
         foreach (double cpu in CpuHistory)
@@ -43,7 +43,7 @@ internal class Program
             Console.Write(" ");
         }
 
-        clean(5);
+        clean(4);
 
         Console.Write("Ram: ");
         foreach (double ram in ramHistory)
@@ -52,7 +52,7 @@ internal class Program
             Console.Write(" ");
         }
 
-        clean(6);
+        clean(5);
 
         Console.Write("Temp: ");
         foreach (double t in temperatureHistory)
@@ -60,20 +60,19 @@ internal class Program
             Console.Write(t);
             Console.Write(" ");
         }
-        Grafik(Nowcpu,7,"CPU: ");
-        Grafik(Nowram,8,"RAM: ");
-        Grafik(Nowtemperature,9,"TEMPERATURE: ");
-        clean(10);
+        Grafik(Nowcpu,6,"CPU: ");
+        Grafik(Nowram,7,"RAM: ");
+        Grafik(Nowtemperature,8,"TEMPERATURE: ");
+        clean(9);
         
         Console.ForegroundColor = ConsoleColor.Green;
         Console.Write($"CPU: {Nowcpu}");
-
-        clean(11);
+        clean(10);
 
         Console.ForegroundColor = ConsoleColor.Cyan;
         Console.Write($"RAM: {Nowram}");
 
-        clean(12);
+        clean(11);
         
         Console.ForegroundColor = ConsoleColor.Yellow;
         Console.Write($"Temperature: {Nowtemperature}");
@@ -98,7 +97,7 @@ internal class Program
         Console.WriteLine();
         Console.WriteLine();
         Console.WriteLine();
-        Console.WriteLine();
+        
 
         monitor.Start();
 
