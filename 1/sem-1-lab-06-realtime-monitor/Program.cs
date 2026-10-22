@@ -89,14 +89,10 @@ internal class Program
 
         Console.WriteLine("Мониторинг запущен.");
         Console.WriteLine("Для завершения программы нажмите Enter.");
-        Console.WriteLine();
-        Console.WriteLine();
-        Console.WriteLine();
-        Console.WriteLine();
-        Console.WriteLine();
-        Console.WriteLine();
-        Console.WriteLine();
-        Console.WriteLine();
+        for(int i = 0; i < 8; i++)
+        {
+            Console.WriteLine();
+        }
         
 
         monitor.Start();
