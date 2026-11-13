@@ -5,7 +5,7 @@ internal class Program
     public static double[] CpuHistory = new double[20];
     public static double[] ramHistory = new double[20];
     public static double[] temperatureHistory = new double[20];
-    public static int i = 0;
+    //public static int i = 0;
 
     public static void clean(int strok)
     {
@@ -18,11 +18,11 @@ internal class Program
     {
         clean(strok);
         string Graph;
-        double kol = index/5;
+        double kol = index / 5;
         if (index % 5 == 0.0)
         {
             
-            Graph = new string('#',(int)kol) + new string('.',20-(int)kol);
+            Graph = new string('#',(int)kol) + new string('.', 20-(int)kol);
         }
         else
         {

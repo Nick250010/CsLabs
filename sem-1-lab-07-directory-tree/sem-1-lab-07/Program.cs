@@ -27,7 +27,8 @@ public class Program
             return;
         }
         var child = CountChildren(_lineIndex);
-        Console.WriteLine(_lines[_lineIndex].Trim() + $" ({child})");
+        Console.WriteLine($"{_lines[_lineIndex].Trim()} ({child})");
+        // string.Format("{0} ({1})", _lines, child)
 
         _lineIndex = 1;
         PrintTree();
@@ -100,7 +101,7 @@ public class Program
                     count++;
                 }
                 depth++;
-            }else if(line == "END")
+            } else if(line == "END")
             {
                 if(depth == 0)
                 {
