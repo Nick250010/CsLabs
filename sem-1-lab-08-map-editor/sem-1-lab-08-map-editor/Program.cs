@@ -5,223 +5,264 @@ using System.Collections.Generic;
 
 namespace MainProject;
 
+public struct Position
+{
+    public int X;
+    public int Y;
+
+    public Position(int x, int y)
+    {
+        X = x;
+        Y = y;
+    }
+}
+
+public struct Cell
+{
+    public char Type;
+
+    public void Show()
+    {
+        Console.Write(Type);
+    }
+}
+
+public struct Player
+{
+    public Position Position;
+}
+
+public class MapSnapshot
+{
+    public Cell[,] Cells { get; private set; }
+    public Position PlayerPosition { get; private set; }
+    public bool HasPlayer { get; private set; }
+
+    public MapSnapshot(Cell[,] cells, Position playerPosition, bool hasPlayer)
+    {
+        Cells = cells;
+        PlayerPosition = playerPosition;
+        HasPlayer = hasPlayer;
+    }
+}
+
+public class Map
+{
+    public int height;
+    public int width;
+
+    public Cell[,] kletki;
+    public Player Player;
+    public bool hasPlayer;
+
+    private List<MapSnapshot> snapshots = new List<MapSnapshot>();
+
+    public Map(int width, int height)
+    {
+        this.width = width;
+        this.height = height;
+        kletki = new Cell[height, width];
+
+        for (int i = 0; i < height; i++)
+        {
+            for (int j = 0; j < width; j++)
+            {
+                kletki[i, j].Type = '.';
+            }
+        }
+    }
+
+    public void Display()
+    {
+        for (int i = 0; i < height; i++)
+        {
+            for (int j = 0; j < width; j++)
+            {
+                if (hasPlayer && Player.Position.X == j && Player.Position.Y == i)
+                {
+                    Console.Write('P');
+                }
+                else
+                {
+                    kletki[i, j].Show();
+                }
+            }
+
+            Console.WriteLine();
+        }
+    }
+
+    public void SetCell(int x, int y, char type)
+    {
+        if (x < 0 || x >= width || y < 0 || y >= height)
+        {
+            Console.WriteLine("Некорректные координаты.");
+            return;
+        }
+
+        kletki[y, x].Type = type;
+    }
+
+    public void PlacePlayer(int x, int y)
+    {
+        if (x < 0 || x >= width || y < 0 || y >= height)
+        {
+            Console.WriteLine("Некорректные координаты.");
+            return;
+        }
+
+        Player.Position = new Position(x, y);
+        hasPlayer = true;
+    }
+
+    public void MovePlayer(Position position)
+    {
+        MovePlayer(position.X, position.Y);
+    }
+
+    public void MovePlayer(int x, int y)
+    {
+        if (!hasPlayer)
+        {
+            Console.WriteLine("Игрок ещё не размещён.");
+            return;
+        }
+
+        if (x < 0 || x >= width || y < 0 || y >= height)
+        {
+            Console.WriteLine("Некорректные координаты.");
+            return;
+        }
+
+        Player.Position = new Position(x, y);
+    }
+
+    public MapSnapshot CreateSnapshot()
+    {
+        Cell[,] cells = new Cell[height, width];
+
+        for (int i = 0; i < height; i++)
+        {
+            for (int j = 0; j < width; j++)
+            {
+                cells[i, j] = kletki[i, j];
+            }
+        }
+
+        MapSnapshot snapshot = new MapSnapshot(cells, Player.Position, hasPlayer);
+
+        snapshots.Add(snapshot);
+
+        Console.WriteLine($"Контрольная точка №{snapshots.Count - 1} создана.");
+
+        return snapshot;
+    }
+
+    public void Restore(MapSnapshot snapshot)
+    {
+        if (snapshot == null ||
+            snapshot.Cells.GetLength(0) != height ||
+            snapshot.Cells.GetLength(1) != width)
+        {
+            Console.WriteLine("Некорректный снимок.");
+            return;
+        }
+
+        for (int i = 0; i < height; i++)
+        {
+            for (int j = 0; j < width; j++)
+            {
+                kletki[i, j] = snapshot.Cells[i, j];
+            }
+        }
+
+        Player.Position = snapshot.PlayerPosition;
+        hasPlayer = snapshot.HasPlayer;
+    }
+
+    public void DisplaySnapshots()
+    {
+        if (snapshots.Count == 0)
+        {
+            Console.WriteLine("Контрольные точки отсутствуют.");
+            return;
+        }
+
+        Console.WriteLine("Список контрольных точек:");
+
+        for (int i = 0; i < snapshots.Count; i++)
+        {
+            Console.WriteLine($"{i} - Контрольная точка №{i}");
+        }
+    }
+
+    public void RestoreSnapshot(int index)
+    {
+        if (index < 0 || index >= snapshots.Count)
+        {
+            Console.WriteLine("Такой контрольной точки не существует.");
+            return;
+        }
+
+        Restore(snapshots[index]);
+        Console.WriteLine("Карта восстановлена.");
+    }
+
+    public void SaveToFile(string fileName)
+    {
+        using (StreamWriter writer = new StreamWriter(fileName))
+        {
+            writer.WriteLine($"{width}|{height}");
+
+            for (int i = 0; i < height; i++)
+            {
+                for (int j = 0; j < width; j++)
+                {
+                    writer.Write(kletki[i, j].Type);
+                }
+
+                writer.WriteLine();
+            }
+        }
+    }
+
+    public static Map Load(string fileName)
+    {
+        string[] lines = File.ReadAllLines(fileName);
+        string[] dimensions = lines[0].Split('|');
+
+        int width = Convert.ToInt32(dimensions[0]);
+        int height = Convert.ToInt32(dimensions[1]);
+
+        if (lines.Length != height + 1)
+        {
+            throw new FormatException("Некорректная высота карты.");
+        }
+
+        Map map = new Map(width, height);
+
+        for (int i = 0; i < height; i++)
+        {
+            if (lines[i + 1].Length != width)
+            {
+                throw new FormatException("Некорректная ширина карты.");
+            }
+
+            for (int j = 0; j < width; j++)
+            {
+                map.kletki[i, j].Type = lines[i + 1][j];
+            }
+        }
+
+        return map;
+    }
+}
+
 public class Program
 {
-    struct Position
-    {
-        public int X;
-        public int Y;
-    }
-
-    struct Cell
-    {
-        public char Type;
-
-        public void Show()
-        {
-            Console.Write(Type);
-        }
-    }
-
-    struct Player
-    {
-        public Position coord;
-    }
-
-    class Map
-    {
-        public int height;
-        public int width;
-        public Cell[,] kletki;
-        public Player player;
-        public bool hasPlayer;
-
-        private List<Cell[,]> snapshots = new List<Cell[,]>();
-
-        public Map(int width, int height)
-        {
-            this.width = width;
-            this.height = height;
-            kletki = new Cell[height, width];
-
-            for (int i = 0; i < height; i++)
-            {
-                for (int j = 0; j < width; j++)
-                {
-                    kletki[i, j].Type = '.';
-                }
-            }
-        }
-
-        public void Display()
-        {
-            for (int i = 0; i < height; i++)
-            {
-                for (int j = 0; j < width; j++)
-                {
-                    if (hasPlayer && player.coord.X == j && player.coord.Y == i)
-                    {
-                        Console.Write('P');
-                    }
-                    else
-                    {
-                        kletki[i, j].Show();
-                    }
-                }
-
-                Console.WriteLine();
-            }
-        }
-
-        public void SetCell(int x, int y, char type)
-        {
-            if (x < 0 || x >= width || y < 0 || y >= height)
-            {
-                Console.WriteLine("Некорректные координаты.");
-                return;
-            }
-
-            kletki[y, x].Type = type;
-        }
-
-        public void PlacePlayer(int x, int y)
-        {
-            if (x < 0 || x >= width || y < 0 || y >= height)
-            {
-                Console.WriteLine("Некорректные координаты.");
-                return;
-            }
-
-            player.coord.X = x;
-            player.coord.Y = y;
-            hasPlayer = true;
-        }
-
-        public void MovePlayer(int x, int y)
-        {
-            if (!hasPlayer)
-            {
-                Console.WriteLine("Игрок ещё не размещён.");
-                return;
-            }
-
-            if (x < 0 || x >= width || y < 0 || y >= height)
-            {
-                Console.WriteLine("Некорректные координаты.");
-                return;
-            }
-
-            player.coord.X = x;
-            player.coord.Y = y;
-        }
-
-        public void CreateSnapshot()
-        {
-            Cell[,] snapshot = new Cell[height, width];
-
-            for (int i = 0; i < height; i++)
-            {
-                for (int j = 0; j < width; j++)
-                {
-                    snapshot[i, j] = kletki[i, j];
-                }
-            }
-
-            snapshots.Add(snapshot);
-
-            Console.WriteLine($"Контрольная точка №{snapshots.Count - 1} создана.");
-        }
-
-        public void DisplaySnapshots()
-        {
-            if (snapshots.Count == 0)
-            {
-                Console.WriteLine("Контрольные точки отсутствуют.");
-                return;
-            }
-
-            Console.WriteLine("Список контрольных точек:");
-
-            for (int i = 0; i < snapshots.Count; i++)
-            {
-                Console.WriteLine($"{i} - Контрольная точка №{i}");
-            }
-        }
-
-        public void RestoreSnapshot(int index)
-        {
-            if (index < 0 || index >= snapshots.Count)
-            {
-                Console.WriteLine("Такой контрольной точки не существует.");
-                return;
-            }
-
-            Cell[,] snapshot = snapshots[index];
-
-            for (int i = 0; i < height; i++)
-            {
-                for (int j = 0; j < width; j++)
-                {
-                    kletki[i, j] = snapshot[i, j];
-                }
-            }
-
-            Console.WriteLine("Карта восстановлена.");
-        }
-
-        public void SaveToFile(string fileName)
-        {
-            using (StreamWriter writer = new StreamWriter(fileName))
-            {
-                writer.WriteLine($"{width}|{height}");
-
-                for (int i = 0; i < height; i++)
-                {
-                    for (int j = 0; j < width; j++)
-                    {
-                        writer.Write(kletki[i, j].Type);
-                    }
-
-                    writer.WriteLine();
-                }
-            }
-        }
-
-        public static Map LoadFromFile(string fileName)
-        {
-            string[] lines = File.ReadAllLines(fileName);
-            string[] dimensions = lines[0].Split('|');
-
-            int width = Convert.ToInt32(dimensions[0]);
-            int height = Convert.ToInt32(dimensions[1]);
-
-            if (lines.Length != height + 1)
-            {
-                throw new FormatException("Некорректная высота карты.");
-            }
-
-            Map map = new Map(width, height);
-
-            for (int i = 0; i < height; i++)
-            {
-                if (lines[i + 1].Length != width)
-                {
-                    throw new FormatException("Некорректная ширина карты.");
-                }
-
-                for (int j = 0; j < width; j++)
-                {
-                    map.kletki[i, j].Type = lines[i + 1][j];
-                }
-            }
-
-            return map;
-        }
-    }
-
     public static void Main()
     {
-        Map map = Map.LoadFromFile("map.txt");
+        Map map = Map.Load("map.txt");
 
         while (true)
         {
